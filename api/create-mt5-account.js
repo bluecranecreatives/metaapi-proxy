@@ -1,10 +1,12 @@
-// File: /api/create-mt5-account.js
+import express from 'express';
+import fetch from 'node-fetch';
+import dotenv from 'dotenv';
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
+dotenv.config();
 
+const router = express.Router();
+
+router.post('/create-mt5-account', async (req, res) => {
   const token = process.env.METAAPI_TOKEN;
   const { login, password, server } = req.body;
 
@@ -25,7 +27,7 @@ export default async function handler(req, res) {
         password,
         server,
         type: 'cloud',
-        region: 'london' // Adjust if needed
+        region: 'london'
       })
     });
 
@@ -35,4 +37,6 @@ export default async function handler(req, res) {
     console.error('❌ Proxy error:', error);
     res.status(500).json({ error: 'Proxy request failed', detail: error.message });
   }
-}
+});
+
+export default router;

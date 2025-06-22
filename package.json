@@ -7,8 +7,8 @@
     "start": "node api/create-mt5-account.js"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^4.18.2",
-    "dotenv": "^16.0.3",
-    "node-fetch": "^3.3.1"
+    "node-fetch": "^3.3.2"
   }
 }
